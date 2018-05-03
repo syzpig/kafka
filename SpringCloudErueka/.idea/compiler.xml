@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ms-conssumer-movie" />
+        <module name="ms-erueka-discover" />
+        <module name="ms-provider-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ms-conssumer-movie" target="1.8" />
+      <module name="ms-erueka-discover" target="1.6" />
+      <module name="ms-provider-user" target="1.8" />
+      <module name="ms-spring-cloud" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,54 @@
+server:
+  port: 7900
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+  application:
+    name: ms-provider-user     #用于指定微服务名称，在eureka用于区分   这个名字一般小写，防止名称混淆
+      #以下是配置kafka参数
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+          zk-nodes: 127.0.0.1:2181
+          minPartitionCount: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+      bindings:
+        testa:  #定义的通道名称
+          destination: test_spring_stream  #绑定topic 用于配置消息通道绑定在消息中间件中的名称，绑定多个用逗号隔开
+          group: group-1 #用于绑定消息通道的消息组
+          content-type: application/x-java-object
+          consumer: #输入通道绑定格式必带前缀
+            concurrency: 1  #输入通道消息者的并发数
+            partitioned: false  #来自消息生产者的数据是否采用了分区
+
+
+#logging:
+  #level:
+     #root: INFO
+     #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+     #org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+     #com.itmuch: DEBUG
+
+#注册第三步 添加Eureka     这三步配置完就可以了，user微服务就注册到eureka上，在其上可以看到     这些步奏官方文档上都有
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123@localhost:8761/eureka
+    registerWithEureka: false
+    fetchRegistry: false
+
+
+  #instance:
+    #prefer-ip-address: true    #用于指定rureka服务列表中该status对应的服务，表明注册到eureka server上的是IP，，访问的时候直接使用ip就可以了
+    #instance-id: ${spring.application.name}:${spring.application.instance-id:${server.port}}   #用自定义指定rureka服务列表中该status对应的服务 的展示微服务顺序，任意自己设值
+                                                                                                             #默认是主机名，服务名，端口号。改为true为使用ip访问

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EruakaDiscover.iml" filepath="$PROJECT_DIR$/EruakaDiscover.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringCloudErueka.iml" filepath="$PROJECT_DIR$/SpringCloudErueka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-conssumer-movie/ms-conssumer-movie.iml" filepath="$PROJECT_DIR$/ms-conssumer-movie/ms-conssumer-movie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ms-erueka-discover/ms-erueka-discover.iml" filepath="$PROJECT_DIR$/../ms-erueka-discover/ms-erueka-discover.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-provider-user/ms-provider-user.iml" filepath="$PROJECT_DIR$/ms-provider-user/ms-provider-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-spring-cloud.iml" filepath="$PROJECT_DIR$/ms-spring-cloud.iml" />
+    </modules>
+  </component>
+</project>

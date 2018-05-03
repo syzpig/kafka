@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ms-conssumer-movie
+    #以下是配置kafka参数
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: 127.0.0.1:9092 #kafka绑定器链接的消息中间件列表，配置多个用逗号隔开，每个地市可以是单独的host，或者host：port
+            zk-nodes: 127.0.0.1:2181 #kafka绑定器使用的zk节点列表，如上。
+            minPartitionCount: 1  #该参数仅在设置了autoCreateTopics和autoAddPartitions起效。用来设置该绑定器所使用主题的全局分区最小数;.......
+            autoCreateTopics: true  #为true自动创建主题
+            autoAddPartitions: true  #默认为false，为true时绑定器将在需要的时候自动创建新的分区
+        bindings:
+          sourceA:  #定义的通道名称
+            destination: test_spring_stream
+            producer: #输出通道绑定格式必带前缀
+              partitionCount: 1  #当分区功能开启时，使用该参数来配置消息数据分区数，如果消息生产者已经配置了分区键的生成策略，那么它的值必须大于1
+
+server:
+  port: 7901   #这里做个单口的配置就可以了
+#把消费者服务业注册到erueka中
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    prefer-ip-address: true    #用于指定rureka服务列表中该status对应的服务，表明注册到eureka server上的是IP，，访问的时候直接使用ip就可以了
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${server.port}}   #用自定义指定rureka服务列表中该status对应的服务 的展示微服务顺序，任意自己设值
